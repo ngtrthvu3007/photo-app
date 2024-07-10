@@ -48,7 +48,3 @@ npx prisma db push
  npm run build // build
 ```
 
-## Note
-
-
-you can use Psql client app like Table plust
