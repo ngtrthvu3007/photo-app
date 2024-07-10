@@ -33,7 +33,7 @@ const production = {
     user: process.env.PSQL_LIVE_USER,
     password: process.env.PSQL_LIVE_PASSWORD,
   },
-  domain: " http://localhost:3001",
+  domain: "https://photo-app-next.onrender.com",
 };
 console.log(process.env.NODE_ENV);
 const config = { development, test, production };
