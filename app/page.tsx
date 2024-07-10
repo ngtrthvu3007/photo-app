@@ -4,6 +4,7 @@ import { Upload, Form, Input, Button, List } from "antd";
 import type { UploadFile, UploadProps } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import config from "./_configs/index";
 
 interface Photo {
   id: number;
@@ -18,6 +19,7 @@ type Valid = {
   type: string;
   message: string;
 };
+
 export default function Home() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -27,7 +29,7 @@ export default function Home() {
   });
 
   const fetchPhotos = async () => {
-    const response = await fetch("/api/photos");
+    const response = await fetch(`${config.domain}/api/photos`);
     const data = await response.json();
     setPhotos(data);
   };
@@ -36,7 +38,7 @@ export default function Home() {
   };
 
   const handleSubmitComment = async (photoId: number, content: string) => {
-    const response = await fetch("/api/comments", {
+    const response = await fetch(`${config.domain}/api/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ photoId, content }),
@@ -51,7 +53,7 @@ export default function Home() {
       formData.append("file", values.photo.fileList[0].originFileObj);
 
       try {
-        const response = await fetch("/api/upload", {
+        const response = await fetch(`${config.domain}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -67,6 +69,7 @@ export default function Home() {
       }
     } else setValid({ type: "error", message: "*Please select photo" });
   };
+
   useEffect(() => {
     fetchPhotos();
   }, []);

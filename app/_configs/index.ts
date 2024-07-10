@@ -1,0 +1,40 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+const development = {
+  app: 3000,
+  db: {
+    host: "localhost",
+    dbport: "5432",
+    name: "photo-app",
+    user: process.env.PSQL_USER,
+    password: process.env.PSQL_PASSWORD,
+  },
+  domain: "http://localhost:3000",
+};
+const test = {
+  app: 3000,
+  db: {
+    host: "localhost",
+    dbport: "5432",
+    name: "photo-app",
+    user: process.env.PSQL_USER,
+    password: process.env.PSQL_PASSWORD,
+  },
+  domain: "http://localhost:3000",
+};
+
+const production = {
+  app: 3001,
+  db: {
+    host: process.env.PSQL_LIVE_HOST,
+    dbport: "5432",
+    name: process.env.PSQL_LIVE_NAME,
+    user: process.env.PSQL_USER,
+    password: process.env.PSQL_PASSWORD,
+  },
+  domain: "",
+};
+const config = { development, test, production };
+const env = process.env.NODE_ENV || "production";
+export default config[env];
