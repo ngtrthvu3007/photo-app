@@ -35,6 +35,7 @@ const production = {
   },
   domain: "",
 };
+console.log(process.env.NODE_ENV);
 const config = { development, test, production };
 const env = process.env.NODE_ENV || "production";
-export default config[env];
+export default config["production"];
