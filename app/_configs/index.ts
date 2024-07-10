@@ -13,15 +13,15 @@ const development = {
   domain: "http://localhost:3000",
 };
 const test = {
-  app: 3000,
+  app: 3002,
   db: {
-    host: "localhost",
+    host: process.env.PSQL_LIVE_HOST,
     dbport: "5432",
-    name: "photo-app",
-    user: process.env.PSQL_USER,
-    password: process.env.PSQL_PASSWORD,
+    name: process.env.PSQL_LIVE_NAME,
+    user: process.env.PSQL_LIVE_USER,
+    password: process.env.PSQL_LIVE_PASSWORD,
   },
-  domain: "http://localhost:3000",
+  domain: "",
 };
 
 const production = {
@@ -30,8 +30,8 @@ const production = {
     host: process.env.PSQL_LIVE_HOST,
     dbport: "5432",
     name: process.env.PSQL_LIVE_NAME,
-    user: process.env.PSQL_USER,
-    password: process.env.PSQL_PASSWORD,
+    user: process.env.PSQL_LIVE_USER,
+    password: process.env.PSQL_LIVE_PASSWORD,
   },
   domain: "",
 };
