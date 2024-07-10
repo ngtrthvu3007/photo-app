@@ -4,7 +4,7 @@ import { Upload, Form, Input, Button, List } from "antd";
 import type { UploadFile, UploadProps } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import Image from "next/image";
-import config from "./_configs/index";
+import DOMAIN from "./constanst";
 
 interface Photo {
   id: number;
@@ -29,7 +29,7 @@ export default function Home() {
   });
 
   const fetchPhotos = async () => {
-    const response = await fetch(`${config.domain}/api/photos`);
+    const response = await fetch(`${DOMAIN}/api/photos`);
     const data = await response.json();
     setPhotos(data);
   };
@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   const handleSubmitComment = async (photoId: number, content: string) => {
-    const response = await fetch(`${config.domain}/api/comments`, {
+    const response = await fetch(`${DOMAIN}/api/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ photoId, content }),
@@ -53,7 +53,7 @@ export default function Home() {
       formData.append("file", values.photo.fileList[0].originFileObj);
 
       try {
-        const response = await fetch(`${config.domain}/api/upload`, {
+        const response = await fetch(`${DOMAIN}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -87,15 +87,13 @@ export default function Home() {
             <Button icon={<UploadOutlined />}>Select Your Photo</Button>
           </Upload>
         </Form.Item>
-        <Form.Item name="photo" wrapperCol={{ offset: 6 }}>
-          <div className={`${valid.type === "error" ? "text-red-500" : "text-green-500"}`}>{valid.message}</div>
-        </Form.Item>
         <Form.Item wrapperCol={{ offset: 6 }} style={{ paddingBlock: 10, marginLeft: "2rem" }}>
           <Button type="primary" htmlType="submit">
             Upload
           </Button>
         </Form.Item>
       </Form>
+      <div className={`${valid.type === "error" ? "text-red-500" : "text-green-500"}`}>{valid.message}</div>
 
       <List
         grid={{ gutter: 16, column: 1 }}
