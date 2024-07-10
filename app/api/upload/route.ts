@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
 import { writeFile } from "fs/promises";
 import path from "path";
+import config from "../../_configs/index";
 
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
   await writeFile(path.join(uploadDir, filename), buffer);
 
   // Save the relative path to the database
-  const imageUrl = `/uploads/${filename}`;
+  const imageUrl = `${config.domain}/uploads/${filename}`;
   const photo = await prisma.photo.create({
     data: { imageUrl },
   });
