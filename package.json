@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.16.1",
+    "@types/pg": "^8.11.6",
     "antd": "^5.19.1",
     "autoprefixer": "^10.4.19",
     "dotenv": "^16.4.5",
