@@ -42,6 +42,9 @@ Using terminal or postgresql client to connect database before run
 npx prisma db push
 ```
 
+5 Create 'uploads' folder in public (public/uploads)
+
+
  ## Run 
  ```
  npm run dev // local
